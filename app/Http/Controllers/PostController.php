@@ -10,10 +10,10 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
+    public function index(){
+        $posts = Post::all();
+        return view('posts.index',['posts' => $posts]);
+    }     
 
     /**
      * Show the form for creating a new resource.
@@ -34,10 +34,9 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
-    {
-        //
-    }
+    public function show(Post $post){
+        return view('posts.show',['post'=>$post]);
+    }   
 
     /**
      * Show the form for editing the specified resource.
