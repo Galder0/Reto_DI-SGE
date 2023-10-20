@@ -15,6 +15,18 @@ class PostSeeder extends Seeder {
             "publicado"=>true,
             "created_at"=>now(),
         ]);
+        DB::table('posts')->insert([
+            "titulo"=>"Segundo post",
+            "texto"=>"Este es el texto del segundo post",
+            "publicado"=>true,
+            "created_at"=>now(),
+        ]);
+        DB::table('posts')->insert([
+            "titulo"=>"Tercer post",
+            "texto"=>"Este es el texto del tercer post",
+            "publicado"=>true,
+            "created_at"=>now(),
+        ]);
     }
 }
 

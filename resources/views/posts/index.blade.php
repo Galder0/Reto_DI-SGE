@@ -21,4 +21,8 @@
     </li>
     @endforeach
 </ul>
+
+<a class="btn btn-primary btn-sm" href="{{route('posts.create')}}"
+role="button">Crear</a>
+
 @endsection

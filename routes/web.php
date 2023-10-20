@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-
+use App\Http\Controllers\ComentarioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +22,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resources([
         'posts' => PostController::class,
     ]);
+    Route::resources([
+        'comentarios' => ComentarioController::class,
+    ]);
 });
-    
-    
 
 Route::controller(PostController::class)->group(function () {
     Route::get('/posts', 'index')->name('posts.index');
@@ -34,3 +35,4 @@ Route::controller(PostController::class)->group(function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+ 
