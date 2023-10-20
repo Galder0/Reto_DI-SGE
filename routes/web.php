@@ -5,6 +5,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\IncidenceController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,9 @@ Route::get('/', function () {
     ]);
     Route::resources([
         'categories' => CategoryController::class,
+    ]);
+    Route::resources([
+        'incidences' => IncidenceController::class,
     ]);
 // });
 

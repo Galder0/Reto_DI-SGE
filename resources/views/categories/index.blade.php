@@ -16,6 +16,8 @@
                 @method('DELETE')
                 <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure you want to delete this category?')">Delete</button>
             </form>
+            {{-- Edit Button --}}
+            <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-warning btn-sm   ">Edit</a>
         </div>
     </li>
     @endforeach

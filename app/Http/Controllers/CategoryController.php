@@ -53,7 +53,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -61,9 +61,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
-    }
+        $request->validate([
+            'name' => 'required|max:255|unique:categories,name,' . $category->id,
+        ]);
 
+        $category->name = $request->input('name');
+        $category->save();
+
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
+    }
+    
     /**
      * Remove the specified resource from storage.
      */
