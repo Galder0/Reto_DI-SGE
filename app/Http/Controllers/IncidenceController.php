@@ -72,7 +72,8 @@ class IncidenceController extends Controller
      */
     public function edit(Incidence $incidence)
     {
-        //
+        $categories = Category::all();
+        return view('incidences.edit',['incidence'=>$incidence, 'categories'=>$categories]);
     }
 
     /**
@@ -80,7 +81,15 @@ class IncidenceController extends Controller
      */
     public function update(Request $request, Incidence $incidence)
     {
-        //
+        $user_id = Auth::id();
+
+        $incidence = new Incidence();
+        $incidence->title = $request->title;
+        $incidence->text = $request->text;
+        $incidence->estimatedtime = $request->estimatedtime;
+        $incidence->user_id = $user_id;
+        $incidence->category_id = $request->category_id;
+        $incidence->save();
     }
 
     /**
@@ -88,7 +97,8 @@ class IncidenceController extends Controller
      */
     public function destroy(Incidence $incidence)
     {
-        //
+        $incidence->delete();
+        return redirect()->route('incidences.index');
     }
     
     public function getUserById($userId)

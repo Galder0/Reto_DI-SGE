@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Comentario;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ComentarioController extends Controller
 {
@@ -34,10 +36,13 @@ class ComentarioController extends Controller
      */
     public function store(Request $request)
     {
+        $user_id = Auth::id();
+
         $post = Post::find($request->post_id);
         $comentario = new Comentario();
         $comentario->texto = $request->texto;
         $comentario->post_id = $post->id;
+        $comentario->user_id = $user_id;
         $comentario->save();
         return redirect()->route('posts.show',$post);
     }
@@ -77,6 +82,19 @@ class ComentarioController extends Controller
     public function destroy(Comentario $comentario)
     {
         //
+    }
+
+    public function getUserById($userId)
+    {
+        // Retrieve the user by ID
+        $user = User::find($userId);
+
+        if ($user) {
+            $userName = $user->name;
+            return "User's name: $userName";
+        } else {
+            return "User not found";
+        }
     }
 
  

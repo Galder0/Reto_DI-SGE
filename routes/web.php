@@ -37,6 +37,9 @@ Route::get('/', function () {
     Route::resources([
         'incidences' => IncidenceController::class,
     ]);
+    Route::resources([
+        'register' => RegisterController::class,
+    ]);
 // });
 
 // Route::controller(PostController::class)->group(function () {

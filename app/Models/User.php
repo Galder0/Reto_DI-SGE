@@ -21,6 +21,7 @@ class User extends Authenticatable {
         'name',
         'email',
         'password',
+        'department_id',
     ];
 
     /**
@@ -45,5 +46,13 @@ class User extends Authenticatable {
 
     public function incidences(): HasMany {
         return $this->hasMany(Incidence::class);
+    }
+
+    public function comentarios(): HasMany {
+        return $this->hasMany(Comentario::class);
+    }
+
+    public function department():BelongsTo {
+        return $this->belongsTo(Department::class);
     }
 }

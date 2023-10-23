@@ -13,7 +13,16 @@
                 <br>Creado el <td>{{ $incidence->created_at }}</td>
                     <!-- Other table cells -->
                 </tr>
-        </tbody>
+            </tbody>
+            <a class="btn btn-warning btn-sm" href="{{route('incidences.edit',$incidence)}}"
+            role="button">Editar</a>
+            <form action="{{route('incidences.destroy',$incidence)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-sm btn-danger" type="submit"
+                    onclick="return confirm('Are you sure?')">Delete incidence
+                </button>
+            </form>
         </div>
     </li>
     @endforeach
