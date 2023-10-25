@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Incidence;
 
 class ComentarioController extends Controller
 {
@@ -24,9 +25,9 @@ class ComentarioController extends Controller
     public function create(Request $request)
     {
         //TODO: mirar esto y hacerlo mejor
-        $post_id = $request->collect('post_id')[0];
-
-        return view('comentarios.create', ['post_id'=>$post_id]);
+        $incidence_id = $request->collect('incidence_id')[0];
+        
+        return view('comentarios.create', ['incidence_id'=>$incidence_id]);
     }
     
 
@@ -37,15 +38,17 @@ class ComentarioController extends Controller
     public function store(Request $request)
     {
         $user_id = Auth::id();
-
-        $post = Post::find($request->post_id);
+    
+        $incidence = Incidence::find($request->incidence_id); // Assuming incidence_id is the field you want to use
         $comentario = new Comentario();
         $comentario->texto = $request->texto;
-        $comentario->post_id = $post->id;
+        $comentario->incidence_id = $incidence->id;
         $comentario->user_id = $user_id;
         $comentario->save();
-        return redirect()->route('posts.show',$post);
+    
+        return redirect()->route('incidences.show', $incidence);
     }
+    
 
     /**
      * Display the specified resource.
@@ -73,7 +76,7 @@ class ComentarioController extends Controller
         
         $comentario->texto = $request->texto;
         $comentario->save();
-        return redirect()->route('posts.show', ['post' => $comentario->post_id]);
+        return redirect()->route('incidences.show', ['incidence' => $comentario->incidence_id]);
     }
 
     /**

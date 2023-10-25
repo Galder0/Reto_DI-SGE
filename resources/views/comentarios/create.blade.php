@@ -9,7 +9,7 @@
             <label for="texto">Comment Text</label>
             <textarea class="form-control" id="texto" name="texto" rows="4"></textarea>
         </div>
-            <input type="hidden" name="post_id" value="{{ $post_id }}">
+            <input type="hidden" name="incidence_id" value="{{ $incidence_id }}">
         <button type="submit" class="btn btn-primary">Submit Comment</button>
     </form>
 </div>

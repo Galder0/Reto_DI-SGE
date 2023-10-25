@@ -13,12 +13,13 @@
     @foreach ($comentarios as $comentario)
     <div class="comentario">
             <p>{{ $comentario->texto }}</p>
+            <p>Escrito por {{ $comentario->user_name }}</p>
             <p>Escrito el {{ $comentario->created_at }}</p>
             @if ($comentario->edited_at)
                 <p class="edited-label">Edited</p>
             @endif
             <!-- Edit button that links to the edit page for the comentario -->
-            <a class="btn btn-primary btn-sm" href="{{ route('comentarios.edit', ['comentario' => $comentario->id]) }}" role="button">Editar Comentario</a>
+            <a class="btn btn-warning btn-sm" href="{{ route('comentarios.edit', ['comentario' => $comentario->id]) }}" role="button">Editar Comentario</a>
         </div>
     @endforeach
 </div>

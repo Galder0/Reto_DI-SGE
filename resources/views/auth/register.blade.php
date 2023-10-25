@@ -60,16 +60,16 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
-
-                        <div class="form-group">
-                            <label for="department">Department</label>
-                            <select id="department" name="department" class="form-control">
-                                @foreach ($departments as $department)
-                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
-                                @endforeach
-                            </select>
+                        <div class="row mb-3">
+                            <label for="department" class="col-md-4 col-form-label text-md-end">Department</label>
+                            <div class="col-md-6">
+                                <select id="department" name="department" class="form-control">
+                                    @foreach ($departments as $department)
+                                        <option value="{{ $department->id }}">{{ $department->depname }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

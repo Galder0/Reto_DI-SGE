@@ -13,8 +13,6 @@ return new class extends Migration
         Schema::create('comentarios', function (Blueprint $table) {
         $table->id();
         $table->string('texto');
-        $table->unsignedBigInteger('post_id');
-        $table->foreign('post_id')->references('id')->on('posts');
         $table->timestamps();
         });
     }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Incidence;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Comentario;
+use App\Models\Department;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,7 +35,9 @@ class IncidenceController extends Controller
     {
         $categories = Category::all();
 
-        return view('incidences.create', ['categories' => $categories]);
+        $departments = Department::all();
+
+        return view('incidences.create', ['categories' => $categories, 'departments' => $departments]);
     }
 
     /**
@@ -49,6 +53,7 @@ class IncidenceController extends Controller
         $incidence->text = $request->input('text');
         $incidence->estimatedtime = $request->input('estimatedtime');
         $incidence->user_id = $user_id;
+        $incidence->department_id = $request->input('department_id');;
         $incidence->category_id = $request->input('category_id');
         $incidence->save();
 
@@ -61,11 +66,27 @@ class IncidenceController extends Controller
     public function show(Incidence $incidence)
     {
         $user = User::find($incidence->user_id);
-            $incidence->user_name = $user ? $user->name : 'Unknown User';
-            $categoryName = $this->getCategoryName($incidence->category_id);
-            $incidence->category_name = $categoryName;
-        return view('incidences.show',['incidence'=>$incidence]);
+        $incidence->user_name = $user ? $user->name : 'Unknown User';
+    
+        $categoryName = $this->getCategoryName($incidence->category_id);
+        $incidence->category_name = $categoryName;
+
+        $departmentName = $this->getDepartmentName($incidence->department_id);
+        $incidence->department_name = $departmentName;
+    
+        // Retrieve comments associated with the $incidence using its ID
+        $comentarios = Comentario::where('incidence_id', $incidence->id)->get();
+    
+        // Loop through comments to find and set user names for each comment
+        foreach ($comentarios as $comentario) {
+            $user2 = User::find($comentario->user_id);
+            $comentario->user_name = $user2 ? $user2->name : 'Unknown User';
+        }
+    
+        return view('incidences.show', ['incidence' => $incidence, 'comentarios' => $comentarios]);
     }
+    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -88,6 +109,7 @@ class IncidenceController extends Controller
         $incidence->text = $request->text;
         $incidence->estimatedtime = $request->estimatedtime;
         $incidence->user_id = $user_id;
+        //$incidence->department_id = $request->department_id;
         $incidence->category_id = $request->category_id;
         $incidence->save();
     }
@@ -122,6 +144,18 @@ class IncidenceController extends Controller
             return $category->name;
         } else {
             return 'Unknown Category';
+        }
+    }
+    public function getDepartmentName($departmentId)
+    {
+        // Retrieve the department by ID
+        $department = Department::find($departmentId);
+
+        if ($department) {
+            $departmentName = $department->depname;
+            return "Department's name: $departmentName";
+        } else {
+            return "Department not found";
         }
     }
 }
