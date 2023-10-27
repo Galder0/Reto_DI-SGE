@@ -7,6 +7,8 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\IncidenceController;
 use App\Http\Controllers\PriorityController;
+use App\Http\Controllers\StatusController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +42,9 @@ Route::get('/', function () {
     ]);
     Route::resources([
         'priorities' => PriorityController::class,
+    ]);
+    Route::resources([
+        'statuses' => StatusController::class,
     ]);
 
     

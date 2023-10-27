@@ -28,4 +28,12 @@ class Incidence extends Model{
     public function department():BelongsTo {
         return $this->belongsTo(Department::class);
     }
+    public function status()
+    {
+        return $this->belongsTo(Status::class);
+    }
+    public function priority()
+    {
+        return $this->belongsTo(Priority::class);
+    }
 }

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CategorySeeder::class,
             PrioritySeeder::class,
+            StatusSeeder::class,
             IncidenceSeeder::class,
             ComentarioSeeder::class,
         ]);

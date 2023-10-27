@@ -46,6 +46,15 @@
                 @endforeach
             </select>
         </div>
+        <div class="form-group">
+            <label for="department_id">Status</label>
+            <select name="status_id" id="status_id" class="form-control">
+                @foreach ($statuses as $status)
+                    <option value="{{ $status->id }}">{{ $status->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        
 
         <button type="submit" class="btn btn-primary">Create Incidence</button>
     </form>

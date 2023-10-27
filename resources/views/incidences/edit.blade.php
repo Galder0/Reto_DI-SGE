@@ -56,6 +56,17 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="department_id">Status</label>
+            <select name="department_id" id="department_id" class="form-control">
+                @foreach ($statuses as $status)
+                    <option value="{{ $status->id }}" {{ $status->id == $incidence->status_id ? 'selected' : '' }}>
+                        {{ $status->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Update Incidence</button>
     </form>
 </div>

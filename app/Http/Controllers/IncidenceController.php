@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Comentario;
 use App\Models\Department;
 use App\Models\Priority;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +41,9 @@ class IncidenceController extends Controller
 
         $priorities = Priority::all();
 
-        return view('incidences.create', ['categories' => $categories, 'departments' => $departments, 'priorities' => $priorities]);
+        $statuses = Status::all();
+
+        return view('incidences.create', ['categories' => $categories, 'departments' => $departments, 'priorities' => $priorities, 'statuses' => $statuses]);
     }
 
     /**
@@ -100,7 +103,8 @@ class IncidenceController extends Controller
         $categories = Category::all();
         $priorities = Priority::all();
         $departments = Department::all();
-        return view('incidences.edit',['incidence'=>$incidence, 'categories'=>$categories, 'priorities'=>$priorities, 'departments' => $departments]);
+        $statuses = Status::all();
+        return view('incidences.edit',['incidence'=>$incidence, 'categories'=>$categories, 'priorities'=>$priorities, 'departments' => $departments, 'statuses' => $statuses]);
     }
 
     /**
@@ -117,6 +121,7 @@ class IncidenceController extends Controller
         $incidence->priority_id = $request->priority_id;
         $incidence->department_id = $request->department_id;
         $incidence->category_id = $request->category_id;
+        $incidence->status_id = $request->status_id;
         
         $incidence->save();
 

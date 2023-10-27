@@ -20,6 +20,7 @@ class IncidenceSeeder extends Seeder {
             "category_id" => "1",
             "department_id" => "1",
             "priority_id" => "1",
+            "status_id" => "1",
             "created_at"=> now(),
         ]);
         DB::table('incidences')->insert([
@@ -30,6 +31,7 @@ class IncidenceSeeder extends Seeder {
             "category_id" => "2",
             "department_id" => "2",
             "priority_id" => "2",
+            "status_id" => "2",
             "created_at"=> now(),
         ]);
         DB::table('incidences')->insert([
@@ -40,6 +42,7 @@ class IncidenceSeeder extends Seeder {
             "category_id" => "3",
             "department_id" => "3",
             "priority_id" => "3",
+            "status_id" => "3",
             "created_at"=> now(),
         ]);
     }
