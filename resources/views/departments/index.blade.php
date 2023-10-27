@@ -10,11 +10,17 @@
             Creado el {{ $department->created_at }}
             <a class="btn btn-warning btn-sm" href="{{ route('departments.edit', $department) }}"
                role="button">Editar</a>
-            <form action="{{ route('departments.destroy', $department) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-            </form>
+
+            {{-- Check if the department has incidences before allowing deletion --}}
+            @if ($department->incidences->count() === 0)
+                <form action="{{ route('departments.destroy', $department) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+            @else
+                <p class="text-red-600">This department cannot be deleted as it has associated incidences.</p>
+            @endif
         </div>
         
         {{-- Display incidences for this department below it --}}

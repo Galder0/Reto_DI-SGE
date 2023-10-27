@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Incidence;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -76,7 +77,18 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        // Get all associated incidences
+        $incidences = $category->incidences;
+
+        // Set category_id to null for each associated incidence
+        $incidences->each(function ($incidence) {
+            $incidence->update(['category_id' => null]);
+        });
+
+        // Delete the category
         $category->delete();
-        return redirect()->route('categories.index');
+
+        return redirect()->route('categories.index')
+            ->with('success', 'Category deleted successfully.');
     }
 }

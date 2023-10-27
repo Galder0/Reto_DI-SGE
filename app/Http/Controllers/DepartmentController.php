@@ -67,7 +67,16 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
+        // Check if the department has associated incidences
+        if ($department->incidences()->count() > 0) {
+            return redirect()->route('departments.index')
+                ->with('error', 'This department cannot be deleted as it has associated incidences.');
+        }
+    
+        // If there are no associated incidences, proceed with deletion
         $department->delete();
-        return redirect()->route('departments.index');
+    
+        return redirect()->route('departments.index')
+            ->with('success', 'Department deleted successfully.');
     }
 }

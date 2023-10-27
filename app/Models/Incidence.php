@@ -8,6 +8,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Incidence extends Model{
+
+    protected $fillable = [
+        'title',
+        'description',
+        // Add 'category_id' to the fillable attributes
+        'category_id',
+        // Add other fillable attributes as needed
+    ];
+
     use HasFactory;
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
