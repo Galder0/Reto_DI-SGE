@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Comentario;
 use App\Models\Department;
+use App\Models\Priority;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,7 +38,9 @@ class IncidenceController extends Controller
 
         $departments = Department::all();
 
-        return view('incidences.create', ['categories' => $categories, 'departments' => $departments]);
+        $priorities = Priority::all();
+
+        return view('incidences.create', ['categories' => $categories, 'departments' => $departments, 'priorities' => $priorities]);
     }
 
     /**
@@ -55,6 +58,7 @@ class IncidenceController extends Controller
         $incidence->user_id = $user_id;
         $incidence->department_id = $request->input('department_id');;
         $incidence->category_id = $request->input('category_id');
+        $incidence->priority_id = $request->input('priority_id');
         $incidence->save();
 
         return redirect()->route('incidences.index')->with('success', 'Incidence created successfully.');
@@ -94,7 +98,9 @@ class IncidenceController extends Controller
     public function edit(Incidence $incidence)
     {
         $categories = Category::all();
-        return view('incidences.edit',['incidence'=>$incidence, 'categories'=>$categories]);
+        $priorities = Priority::all();
+        $departments = Department::all();
+        return view('incidences.edit',['incidence'=>$incidence, 'categories'=>$categories, 'priorities'=>$priorities, 'departments' => $departments]);
     }
 
     /**
@@ -104,14 +110,17 @@ class IncidenceController extends Controller
     {
         $user_id = Auth::id();
 
-        $incidence = new Incidence();
         $incidence->title = $request->title;
         $incidence->text = $request->text;
         $incidence->estimatedtime = $request->estimatedtime;
         $incidence->user_id = $user_id;
-        //$incidence->department_id = $request->department_id;
+        $incidence->priority_id = $request->priority_id;
+        $incidence->department_id = $request->department_id;
         $incidence->category_id = $request->category_id;
+        
         $incidence->save();
+
+        return redirect()->route('incidences.index')->with('success', 'Incidence edited successfully.');
     }
 
     /**

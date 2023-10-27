@@ -6,6 +6,7 @@ use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\IncidenceController;
+use App\Http\Controllers\PriorityController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +38,10 @@ Route::get('/', function () {
     Route::resources([
         'incidences' => IncidenceController::class,
     ]);
+    Route::resources([
+        'priorities' => PriorityController::class,
+    ]);
+
     
 // });
 
