@@ -17,7 +17,29 @@ class IncidenceSeeder extends Seeder {
             "text"=>"1",
             "estimatedtime"=> "100",
             "user_id" => "1",
+            "category_id" => "1",
+            "department_id" => "1",
+            "priority_id" => "1",
+            "created_at"=> now(),
+        ]);
+        DB::table('incidences')->insert([
+            "title"=>"Segundo comentario",
+            "text"=>"2",
+            "estimatedtime"=> "100",
+            "user_id" => "1",
             "category_id" => "2",
+            "department_id" => "2",
+            "priority_id" => "2",
+            "created_at"=> now(),
+        ]);
+        DB::table('incidences')->insert([
+            "title"=>"Tercer comentario",
+            "text"=>"3",
+            "estimatedtime"=> "100",
+            "user_id" => "1",
+            "category_id" => "3",
+            "department_id" => "3",
+            "priority_id" => "3",
             "created_at"=> now(),
         ]);
     }

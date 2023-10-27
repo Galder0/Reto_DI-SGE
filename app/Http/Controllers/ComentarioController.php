@@ -84,7 +84,8 @@ class ComentarioController extends Controller
      */
     public function destroy(Comentario $comentario)
     {
-        //
+        $comentario->delete();
+        return redirect()->route('comentarios.index');
     }
 
     public function getUserById($userId)

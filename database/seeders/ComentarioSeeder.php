@@ -11,17 +11,20 @@ class ComentarioSeeder extends Seeder {
     public function run(): void {
         DB::table('comentarios')->insert([
             "texto"=>"Primer comentario",
-            "post_id"=>"1",
+            "user_id" =>"1",
+            "incidence_id"=>"1",
             "created_at"=>now(),
         ]);
         DB::table('comentarios')->insert([
             "texto"=>"Segundo comentario",
-            "post_id"=>"1",
+            "user_id" =>"1",
+            "incidence_id"=>"2",
             "created_at"=>now(),
         ]);
         DB::table('comentarios')->insert([
             "texto"=>"Tercer comentario",
-            "post_id"=>"1",
+            "user_id" =>"1",
+            "incidence_id"=>"3",
             "created_at"=>now(),
         ]);
     }

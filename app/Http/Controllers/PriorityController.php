@@ -60,8 +60,15 @@ class PriorityController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(priority $priority)
+    public function destroy(Priority $priority)
     {
-        //
+        // Find all incidences with the given priority and set their priority_id to null
+        \App\Models\Incidence::where('priority_id', $priority->id)->update(['priority_id' => null]);
+
+        // Now, delete the priority
+        $priority->delete();
+
+        return redirect()->route('priorities.index')->with('success', 'Priority deleted successfully');
     }
+
 }
