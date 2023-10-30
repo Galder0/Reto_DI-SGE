@@ -13,7 +13,7 @@ class IncidenceSeeder extends Seeder {
      */
     public function run(): void {
         DB::table('incidences')->insert([
-            "title"=>"Primer comentario",
+            "title"=>"Primera Incidencia",
             "text"=>"1",
             "estimatedtime"=> "100",
             "user_id" => "1",
@@ -24,7 +24,7 @@ class IncidenceSeeder extends Seeder {
             "created_at"=> now(),
         ]);
         DB::table('incidences')->insert([
-            "title"=>"Segundo comentario",
+            "title"=>"Segunda Incidencia",
             "text"=>"2",
             "estimatedtime"=> "100",
             "user_id" => "1",
@@ -35,7 +35,7 @@ class IncidenceSeeder extends Seeder {
             "created_at"=> now(),
         ]);
         DB::table('incidences')->insert([
-            "title"=>"Tercer comentario",
+            "title"=>"Tercera Incidencia",
             "text"=>"3",
             "estimatedtime"=> "100",
             "user_id" => "1",

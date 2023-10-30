@@ -19,13 +19,14 @@ class IncidenceController extends Controller
      */
     public function index()
     {
-        $incidences = Incidence::all();
+        $incidences = Incidence::latest()->get();
         $incidences->each(function ($incidence) {
             $user = User::find($incidence->user_id);
             $incidence->user_name = $user ? $user->name : 'Unknown User';
             $categoryName = $this->getCategoryName($incidence->category_id);
             $incidence->category_name = $categoryName;
         });
+        
         return view('incidences.index',['incidences' => $incidences]);
     }
     
@@ -74,6 +75,9 @@ class IncidenceController extends Controller
     {
         $user = User::find($incidence->user_id);
         $incidence->user_name = $user ? $user->name : 'Unknown User';
+
+        $user = User::find($incidence->user_id);
+        $incidence->user_department = $user ? $user->department_id : 'Unknown User';
     
         $categoryName = $this->getCategoryName($incidence->category_id);
         $incidence->category_name = $categoryName;

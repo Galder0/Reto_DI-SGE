@@ -15,6 +15,7 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    
 </head>
 <body id = "mis-estilos">
     <div id="app">
@@ -30,7 +31,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('incidences.index') }}"> Incidences</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('categories.index') }}"> Categories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('statuses.index') }}"> Statuses</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('priorities.index') }}"> Priorities</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('departments.index') }}"> Departments</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -67,8 +82,21 @@
                                 </div>
                             </li>
                         @endguest
+                        <li class="nav-item dropdown">
+                            <a id="theme-dropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Theme
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="theme-dropdown">
+                                <a class="dropdown-item" href="#" onclick="setTheme('light')">Light</a>
+                                <a class="dropdown-item" href="#" onclick="setTheme('dark')">Dark</a>
+                            </div>
+                        </li>
                     </ul>
                 </div>
+                
+                
             </div>
         </nav>
 

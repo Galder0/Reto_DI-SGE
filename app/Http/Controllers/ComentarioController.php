@@ -23,12 +23,24 @@ class ComentarioController extends Controller
      * Show the form for creating a new resource.
      */
     public function create(Request $request)
-    {
-        //TODO: mirar esto y hacerlo mejor
-        $incidence_id = $request->collect('incidence_id')[0];
-        
-        return view('comentarios.create', ['incidence_id'=>$incidence_id]);
+{
+    // Get the incidence based on the ID passed in the request
+    $incidence = Incidence::find($request->input('incidence_id'));
+
+    if (!$incidence) {
+        return redirect()->route('incidences.index')->with('error', 'Incidence not found');
     }
+
+    // Get the currently authenticated user
+    $user = Auth::user();
+
+    // Check if the user's department matches the incidence's department
+    if ($user->department_id === $incidence->department_id) {
+        return view('comentarios.create', ['incidence' => $incidence]);
+    } else {
+        return redirect()->route('incidences.index')->with('error', 'You are not authorized to add comments to this incidence');
+    }
+}
     
 
 

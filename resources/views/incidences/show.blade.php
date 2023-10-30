@@ -29,6 +29,11 @@
     @endforeach
 </div>
 
-<a class="btn btn-primary btn-sm" href="{{ route('comentarios.create', ['incidence_id' => $incidence->id]) }}" role="button">Crear comentario</a>
+@if ($incidence->user_department !== $incidence->department_id)
+    <a class="btn btn-primary btn-sm"
+        href="{{ route('comentarios.create', ['incidence_id' => $incidence->id]) }}"
+        role="button">Crear comentario</a>
+@endif
+
 
 @endsection
