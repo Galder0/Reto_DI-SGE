@@ -12,6 +12,7 @@ use App\Models\Status;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class IncidenceController extends Controller
 {
     /**
@@ -63,6 +64,7 @@ class IncidenceController extends Controller
         $incidence->department_id = $request->input('department_id');;
         $incidence->category_id = $request->input('category_id');
         $incidence->priority_id = $request->input('priority_id');
+        $incidence->status_id = $request->input('status_id');
         $incidence->save();
 
         return redirect()->route('incidences.index')->with('success', 'Incidence created successfully.');
@@ -73,11 +75,12 @@ class IncidenceController extends Controller
      */
     public function show(Incidence $incidence)
     {
+        
         $user = User::find($incidence->user_id);
         $incidence->user_name = $user ? $user->name : 'Unknown User';
 
-        $user = User::find($incidence->user_id);
-        $incidence->user_department = $user ? $user->department_id : 'Unknown User';
+        $currentUser = Auth::user();
+        $incidence->user_department = $currentUser ? $currentUser->department_id : 'Unknown Department';
     
         $categoryName = $this->getCategoryName($incidence->category_id);
         $incidence->category_name = $categoryName;
@@ -137,9 +140,20 @@ class IncidenceController extends Controller
      */
     public function destroy(Incidence $incidence)
     {
+        // Check if the incidence has related comments
+        $comentarios = $incidence->comentarios;
+
+        // Loop through the comments and delete them
+        foreach ($comentarios as $comentario) {
+            $comentario->delete();
+        }
+
+        // Now you can safely delete the incidence
         $incidence->delete();
+
         return redirect()->route('incidences.index');
     }
+
     
     public function getUserById($userId)
     {

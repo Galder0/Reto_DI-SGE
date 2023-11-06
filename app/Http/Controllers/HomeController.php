@@ -24,8 +24,12 @@ class HomeController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
+        $currentUser = Auth::user();
 
-        $incidences = Incidence::latest()->get();
+        $incidences = Incidence::where('user_id', $currentUser->id)
+            ->latest()
+            ->get();
+
         $incidences->each(function ($incidence) {
             $user = User::find($incidence->user_id);
             $incidence->user_name = $user ? $user->name : 'Unknown User';

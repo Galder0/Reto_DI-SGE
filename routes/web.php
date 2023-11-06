@@ -8,6 +8,7 @@ use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\IncidenceController;
 use App\Http\Controllers\PriorityController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::resources([
         'posts' => PostController::class,
     ]);
@@ -46,24 +47,19 @@ Route::get('/', function () {
     Route::resources([
         'statuses' => StatusController::class,
     ]);
+    Route::resources([
+        'home' => HomeController::class,
+    ]);
 
     
-// });
+});
 
-// Route::controller(PostController::class)->group(function () {
-//     Route::get('/posts', 'index')->name('posts.index');
-//     Route::get('/posts/{post}', 'show')->name('posts.show');
-// })->withoutMiddleware([Auth::class]);
+Route::controller(IncidenceController::class)->group(function () {
+    Route::get('/incidences', 'index')->name('incidences.index');
+    //Route::get('/incidences/{incidence}', 'show')->name('incidences.show');
+})->withoutMiddleware([Auth::class]);
 
-// Route::controller(CategorieController::class)->group(function () {
-//     Route::get('/categories', 'index')->name('categories.index');
-//     Route::get('/categories/{categorie}', 'show')->name('categories.show');
-// })->withoutMiddleware([Auth::class]);
 
-// Route::controller(DepartmentController::class)->group(function () {
-//     Route::get('/departments', 'index')->name('departments.index');
-
-// })->withoutMiddleware([Auth::class]);
 
 Auth::routes();
 

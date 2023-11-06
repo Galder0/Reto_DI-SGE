@@ -24,12 +24,15 @@
             <p class="edited-label">Edited</p>
         @endif
         <!-- Edit button that links to the edit page for the comentario -->
-        <a class="btn btn-warning btn-sm" href="{{ route('comentarios.edit', ['comentario' => $comentario->id]) }}" role="button">Editar Comentario</a>
+        @if ($comentario->user_id == Auth::user()->id)
+            <a class="btn btn-warning btn-sm" href="{{ route('comentarios.edit', ['comentario' => $comentario->id]) }}" role="button">Editar Comentario</a>
+        @endif
+        
     </div>
     @endforeach
 </div>
-
-@if ($incidence->user_department !== $incidence->department_id)
+    
+@if ($incidence->user_department == $incidence->department_id)
     <a class="btn btn-primary btn-sm"
         href="{{ route('comentarios.create', ['incidence_id' => $incidence->id]) }}"
         role="button">Crear comentario</a>

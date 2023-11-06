@@ -24,15 +24,18 @@
                 </form>
             </div>
         </div>
-        
+
         {{-- Display comments for this incidence below it --}}
-        <div>
+        @auth
+        <div class="card mb-2">
             <ul>
                 @foreach ($incidence->comentarios as $comentario)
                     <li>Comentario: {{ $comentario->texto }}</li>
                 @endforeach
             </ul>
         </div>
+        @endauth
+        
     </li>
     @endforeach
 </ul>
