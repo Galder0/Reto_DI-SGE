@@ -107,6 +107,10 @@ class IncidenceController extends Controller
      */
     public function edit(Incidence $incidence)
     {
+        if (auth()->user()->id !== $incidence->user_id) {
+            // If not, deny access and show an error message or redirect as needed
+            return redirect()->route('incidences.index')->with('error', 'You do not have permission to edit this incidence.');
+        }
         $categories = Category::all();
         $priorities = Priority::all();
         $departments = Department::all();
@@ -185,7 +189,7 @@ class IncidenceController extends Controller
 
         if ($department) {
             $departmentName = $department->depname;
-            return "Department's name: $departmentName";
+            return "$departmentName";
         } else {
             return "Department not found";
         }

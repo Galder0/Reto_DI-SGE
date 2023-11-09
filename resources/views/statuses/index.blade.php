@@ -6,7 +6,9 @@
 
     @foreach ($statuses as $status)
     <div class="card mb-3">
-        <div class="card-header">{{ $status->name }}</div>
+        <div class="card-header">
+            <h2><a href="{{ route('statuses.show', $status) }}">{{ $status->name }}</a></h2>
+        </div>
         <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted">Created At: {{ $status->created_at }}</h6>
             <p class="card-text">First 5 Incidences:</p>
@@ -21,8 +23,11 @@
                                 <!-- Other table cells -->
                             </tr>
                         </tbody>
-                        <a class="btn btn-warning btn-sm" href="{{ route('incidences.edit', $incidence) }}"
-                        role="button">Editar</a>
+                        @auth
+                        @if (auth()->user()->id === $incidence->user_id)
+                            <a class="btn btn-warning btn-sm" href="{{ route('incidences.edit', $incidence) }}" role="button">Editar</a>
+                        @endif
+                        @endauth
                         <form action="{{ route('incidences.destroy', $incidence) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -34,7 +39,6 @@
             </ul>
 
             <div class="mt-3">
-                <a href="{{ route('statuses.show', $status) }}" class="btn btn-info">Show</a>
                 <a href="{{ route('statuses.edit', $status) }}" class="btn btn-warning">Edit</a>
                 <form action="{{ route('statuses.destroy', $status) }}" method="POST" class="d-inline">
                     @csrf

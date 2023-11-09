@@ -6,7 +6,9 @@
 
     @foreach ($priorities as $priority)
     <div class="card mb-3">
-        <div class="card-header">{{ $priority->name }}</div>
+        <div class="card-header">
+            <h2><a href="{{ route('priorities.show', $priority) }}">{{ $priority->name }}</a></h2>
+        </div>
         <div class="card-body">
             <h5 class="card-title">Order: {{ $priority->order ?? 'N/A' }}</h5>
             <h6 class="card-subtitle mb-2 text-muted">Created At: {{ $priority->created_at }}</h6>
@@ -22,8 +24,11 @@
                                 <!-- Other table cells -->
                             </tr>
                         </tbody>
-                        <a class="btn btn-warning btn-sm" href="{{ route('incidences.edit', $incidence) }}"
-                        role="button">Editar</a>
+                        @auth
+                        @if (auth()->user()->id === $incidence->user_id)
+                            <a class="btn btn-warning btn-sm" href="{{ route('incidences.edit', $incidence) }}" role="button">Editar</a>
+                        @endif
+                        @endauth
                         <form action="{{ route('incidences.destroy', $incidence) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -35,7 +40,6 @@
             </ul>
 
             <div class="mt-3">
-                <a href="{{ route('priorities.show', $priority) }}" class="btn btn-info">Show</a>
                 <a href="{{ route('priorities.edit', $priority) }}" class="btn btn-warning">Edit</a>
                 <form action="{{ route('priorities.destroy', $priority) }}" method="POST" class="d-inline">
                     @csrf

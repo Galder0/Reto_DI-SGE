@@ -5,9 +5,9 @@
     <h1>Departments</h1>
     <ul class="list-group">
         @foreach ($departments as $department)
-        <li class="list-group-item">
+        <li class="list-group-item ">
             <div class="d-flex justify-content-between align-items-center">
-                <a href="{{ route('departments.show', $department) }}">{{ $department->depname }}</a>
+                <h2><a href="{{ route('departments.show', $department) }}">{{ $department->depname }}</a></h2>
                 <span>Creado el {{ $department->created_at }}</span>
                 <a href="{{ route('departments.edit', $department) }}" class="btn btn-warning btn-sm" role="button">Editar</a>
             </div>
