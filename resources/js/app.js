@@ -1,2 +1,2 @@
 import './bootstrap';
-//require('./theme-switcher');
+import '../sass/darkmode.scss'
