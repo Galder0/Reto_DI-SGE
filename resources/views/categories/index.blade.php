@@ -6,11 +6,8 @@
 
     @foreach ($categories as $category)
     <div class="card mb-3">
-        <div>
-            <div>
-                <h2><a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a></h2>
-                <div style="border-top: 1px solid #000; margin: 10px 0;"></div>
-            </div>
+        <div class="card-header">
+            <h2><a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a></h2>
         </div>
         <div class="card-body">
             <h6 class="card-subtitle mb-2 text-muted">Created At: {{ $category->created_at }}</h6>

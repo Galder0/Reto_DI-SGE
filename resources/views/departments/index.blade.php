@@ -9,7 +9,6 @@
             <div class="d-flex justify-content-between align-items-center">
                 <h2><a href="{{ route('departments.show', $department) }}">{{ $department->depname }}</a></h2>
                 <span>Creado el {{ $department->created_at }}</span>
-                <a href="{{ route('departments.edit', $department) }}" class="btn btn-warning btn-sm" role="button">Editar</a>
             </div>
             
             @if ($department->incidences->count() === 0)
@@ -45,6 +44,7 @@
                 </div>
                 @endforeach
             </ul>
+            <a href="{{ route('departments.edit', $department) }}" class="btn btn-warning btn-sm" role="button">Editar</a>
         </li>
         @endforeach
     </ul>

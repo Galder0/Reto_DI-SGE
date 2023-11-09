@@ -57,8 +57,8 @@
         </div>
 
         <div class="form-group">
-            <label for="department_id">Status</label>
-            <select name="department_id" id="department_id" class="form-control">
+            <label for="status_id">Status</label>
+            <select name="status_id" id="status_id" class="form-control">
                 @foreach ($statuses as $status)
                     <option value="{{ $status->id }}" {{ $status->id == $incidence->status_id ? 'selected' : '' }}>
                         {{ $status->name }}
