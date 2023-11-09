@@ -15,12 +15,12 @@
                 <strong>Categoria:</strong> {{ $incidence->category_name }}<br>
                 <strong>Created At:</strong> {{ $incidence->created_at }}<br>
                 <strong>Departamento:</strong> {{ $incidence->department_name }}<br>
-                <strong>Status:</strong> {{ $incidence->status->name }}<br>
-                <strong>Prioridad:</strong> {{ $incidence->priority->name }}<br>
+                <strong>Status:</strong> {{ $incidence->status ? $incidence->status->name : 'Not Available' }}<br>
+                <strong>Prioridad:</strong> {{ $incidence->priority ? $incidence->priority->name : 'Not Available' }}<br>
             </p>
 
             <!-- Incidence Text -->
-            <p class="card-text">
+            <p class="card-text incidence-text">
                 <strong>Texto de la Incidencia:</strong><br>
                 {{ $incidence->text }}
             </p>

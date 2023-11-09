@@ -143,20 +143,17 @@ class IncidenceController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(Incidence $incidence)
-    {
-        // Check if the incidence has related comments
-        $comentarios = $incidence->comentarios;
-
-        // Loop through the comments and delete them
-        foreach ($comentarios as $comentario) {
-            $comentario->delete();
-        }
-
-        // Now you can safely delete the incidence
-        $incidence->delete();
-
-        return redirect()->route('incidences.index');
+{
+    if (auth()->user()->id !== $incidence->user_id) {
+        // If not, deny access and show an error message or redirect as needed
+        return redirect()->route('incidences.index')->with('error', 'You do not have permission to delete this incidence.');
     }
+
+    // Add the logic to delete the incidence here
+    $incidence->delete();
+
+    return redirect()->route('incidences.index')->with('success', 'Incidence deleted successfully.');
+}
 
     
     public function getUserById($userId)

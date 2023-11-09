@@ -1,2 +1,3 @@
 import './bootstrap';
-import '../sass/darkmode.scss'
+import './theme-switcher';
+import './department'

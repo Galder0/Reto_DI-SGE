@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="light>
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -19,9 +19,9 @@
 </head>
 <body id = "mis-estilos">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" data-bs-theme="light">
             <div class="container">
-                <h1> <a class="navbar-brand" href="{{ route('incidences.index') }}">HOME</a></h1>
+                <h1> <a class="navbar-brand" href="{{ route('home') }}">HOME</a></h1>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                         <span class="navbar-toggler-icon"></span>
                     </button>
