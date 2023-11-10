@@ -28,7 +28,7 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">Order: {{ $priority->order ?? 'N/A' }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Created At: {{ $priority->created_at }}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">Creado el: {{ $priority->created_at }}</h6>
             <p class="card-text">First 5 Incidences:</p>
             <ul>
                 @foreach ($priority->incidences->take(5) as $incidence)
@@ -37,7 +37,7 @@
                     <div class="card-body"> 
                         <tbody>
                             <tr>
-                                Creado el   <td>{{ $incidence->created_at }}</td>
+                                <strong>Created At:</strong>    <td>{{ $incidence->created_at }}</td>
                                 <!-- Other table cells -->
                             </tr>
                         </tbody>

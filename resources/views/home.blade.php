@@ -33,7 +33,7 @@
             <h6>Comments:</h6>
             <ul class="list-group">
                 @foreach ($incidence->comentarios as $comentario)
-                <li class="list-group-item">Comentario: {{ $comentario->texto }}</li>
+                <li class="list-group-item"><strong>Comment:</strong> {{ $comentario->texto }}</li>
                 @endforeach
             </ul>
         </div>

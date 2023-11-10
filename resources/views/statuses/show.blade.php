@@ -9,7 +9,7 @@
             <h5 class="card-title">{{ $status->name }}</h5>
 
             <p class="card-text">
-                <strong>Created At:</strong> {{ $status->created_at }}<br>
+                <strong>Created At:</strong> {{ $status->created_at }}
                 <strong>Updated At:</strong> {{ $status->updated_at ? $status->updated_at : 'Not Updated' }}
             </p>
         </div>

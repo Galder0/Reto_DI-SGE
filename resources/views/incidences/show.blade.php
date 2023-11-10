@@ -38,7 +38,7 @@
                 <p class="card-text">
                     <strong>Escrito por:</strong> {{ $comentario->user_name }}<br>
                     <strong>Escrito el:</strong> {{ $comentario->created_at }}<br>
-                    <strong>Updated At:</strong> {{ $comentario->updated_at ? $comentario->updated_at : 'Not Updated' }}</li>
+                    <strong>Editado el:</strong> {{ $comentario->updated_at ? $comentario->updated_at : 'Not Updated' }}</li>
                 </p>
                 @if ($comentario->edited_at)
                     <p class="card-text edited-label">Edited</p>

@@ -31,8 +31,7 @@
                     <div class="card-body"> 
                         <tbody>
                             <tr>
-                                Creado el   <td>{{ $incidence->created_at }}</td>
-                                <!-- Other table cells -->
+                                <strong>Created At:</strong>   <td>{{ $incidence->created_at }}</td>
                             </tr>
                         </tbody>
                         @auth
