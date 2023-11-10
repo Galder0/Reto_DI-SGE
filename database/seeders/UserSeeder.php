@@ -34,5 +34,15 @@ class UserSeeder extends Seeder
             'updated_at' => now(),
             'department_id' => 2,
         ]);
+        DB::table('users')->insert([
+            'name' => 'Delgar',
+            'email' => 'galdergbals@gmail.com',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$1pKGf2dqo.e9W4oM29uJUOxHwwrNACPjkULSLv69fS0q6IehSeGXK',
+            'remember_token' => null,
+            'created_at' => now(),
+            'updated_at' => now(),
+            'department_id' => 3,
+        ]);            
     }
 }

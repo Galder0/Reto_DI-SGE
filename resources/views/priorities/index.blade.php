@@ -4,6 +4,11 @@
 <div class="container">
     <h1>Priorities</h1>
 
+    @php
+        // Order priorities by 'order' attribute in descending order
+        $priorities = $priorities->sortByDesc('order');
+    @endphp
+
     @foreach ($priorities as $priority)
     <div class="card mb-3">
         <div class="card-header">

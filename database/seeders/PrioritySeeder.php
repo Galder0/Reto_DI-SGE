@@ -15,23 +15,23 @@ class PrioritySeeder extends Seeder
     public function run(): void
     {
         DB::table('priorities')->insert([
-            'name' => 'High',
-            'order' => 1,
+            'name' => 'Alta',
+            'order' => 15,
         ]);
 
         DB::table('priorities')->insert([
-            'name' => 'Medium',
-            'order' => 2,
+            'name' => 'Media',
+            'order' => 10,
         ]);
 
         DB::table('priorities')->insert([
-            'name' => 'Low',
-            'order' => 3,
+            'name' => 'Baja',
+            'order' => 5,
         ]);
 
         DB::table('priorities')->insert([
-            'name' => 'Critical',
-            'order' => 4,
+            'name' => 'Crítica',
+            'order' => 20,
         ]);
     }
 }

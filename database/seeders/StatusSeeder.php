@@ -15,17 +15,25 @@ class StatusSeeder extends Seeder
     public function run(): void
     {
         DB::table('statuses')->insert([
-            'name' => 'status 1',
+            'name' => 'Sin Asignar',
         ]);
         DB::table('statuses')->insert([
-            'name' => 'status 2',
+            'name' => 'Asignada',
         ]);
         DB::table('statuses')->insert([
-            'name' => 'status 3',
+            'name' => 'Escalada',
         ]);
         DB::table('statuses')->insert([
-            'name' => 'status 4',
+            'name' => 'En Curso',
         ]);
-
+        DB::table('statuses')->insert([
+            'name' => 'Retenida',
+        ]);
+        DB::table('statuses')->insert([
+            'name' => 'Resuelta',
+        ]);
+        DB::table('statuses')->insert([
+            'name' => 'Cerrada',
+        ]);
     }
 }

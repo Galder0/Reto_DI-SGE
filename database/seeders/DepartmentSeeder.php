@@ -13,15 +13,15 @@ class DepartmentSeeder extends Seeder {
      */
     public function run(): void {
         DB::table('departments')->insert([
-            "depname"=>"Primer Departamento",
+            "depname"=>"Departamento de Ventas",
             "created_at"=>now(),
         ]);
         DB::table('departments')->insert([
-            "depname"=>"Segundo Departamento",
+            "depname"=>"Departamento de Logística",
             "created_at"=>now(),
         ]);
         DB::table('departments')->insert([
-            "depname"=>"Tercer Departamento",
+            "depname"=>"Departamento IT",
             "created_at"=>now(),
         ]);
     }

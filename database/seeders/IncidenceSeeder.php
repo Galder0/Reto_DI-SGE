@@ -13,36 +13,36 @@ class IncidenceSeeder extends Seeder {
      */
     public function run(): void {
         DB::table('incidences')->insert([
-            "title"=>"Primera Incidencia",
-            "text"=>"1",
+            "title"=>"Fallo de la maquina de empanadas",
+            "text"=>"La maquina de empanadas a dejado de funcionar, paralizando casi por completo la elaboracion de las mismas.",
             "estimatedtime"=> "100",
-            "user_id" => "1",
-            "category_id" => "1",
-            "department_id" => "1",
-            "priority_id" => "1",
+            "user_id" => "2",
+            "category_id" => "2",
+            "department_id" => "2",
+            "priority_id" => "4",
             "status_id" => "1",
             "created_at"=> now(),
         ]);
         DB::table('incidences')->insert([
-            "title"=>"Segunda Incidencia",
-            "text"=>"2",
-            "estimatedtime"=> "100",
+            "title"=>"Venta de productos en mal estado de la web",
+            "text"=>"Llegan reclamaciones de los usuarios que compraron la ultima linea de empanadas publicada en la web.",
+            "estimatedtime"=> "456",
             "user_id" => "1",
-            "category_id" => "2",
-            "department_id" => "2",
-            "priority_id" => "2",
-            "status_id" => "2",
+            "category_id" => "1",
+            "department_id" => "1",
+            "priority_id" => "1",
+            "status_id" => "6",
             "created_at"=> now(),
         ]);
         DB::table('incidences')->insert([
-            "title"=>"Tercera Incidencia",
-            "text"=>"3",
+            "title"=>"Fallo en la base de datos de la web, los precios aparecen con descuento",
+            "text"=>"Varios clientes ya han realizado las compras y nos llegan las alertas desde el departamento de ventas.",
             "estimatedtime"=> "100",
             "user_id" => "1",
             "category_id" => "3",
             "department_id" => "3",
-            "priority_id" => "3",
-            "status_id" => "3",
+            "priority_id" => "4",
+            "status_id" => "5",
             "created_at"=> now(),
         ]);
     }

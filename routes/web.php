@@ -27,9 +27,6 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::resources([
-        'posts' => PostController::class,
-    ]);
-    Route::resources([
         'comentarios' => ComentarioController::class,
     ]);
     Route::resources([
