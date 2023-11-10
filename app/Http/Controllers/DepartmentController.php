@@ -58,6 +58,7 @@ class DepartmentController extends Controller
     public function update(Request $request, Department $department)
     {
         $department->depname = $request->depname;
+        $department->updated_at = now();
         $department->save();
         return view('departments.show',['department'=>$department]);
     }

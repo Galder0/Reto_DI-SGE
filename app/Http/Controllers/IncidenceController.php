@@ -133,6 +133,7 @@ class IncidenceController extends Controller
         $incidence->department_id = $request->department_id;
         $incidence->category_id = $request->category_id;
         $incidence->status_id = $request->status_id;
+        $incidence->updated_at = now();
         
         $incidence->save();
 

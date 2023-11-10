@@ -51,6 +51,7 @@ class StatusController extends Controller
     {
         
         $status->name = $request->name;
+        $status->updated_at = now();
         $status->save();
         return redirect()->route('statuses.index')->with('success', 'Status updated successfully');
     }

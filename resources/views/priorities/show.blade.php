@@ -11,7 +11,8 @@
                 <strong>Order:</strong> {{ $priority->order ?? 'N/A' }}
             </p>
             <p class="card-text">
-                <strong>Created At:</strong> {{ $priority->created_at }}
+                <strong>Created At:</strong> {{ $priority->created_at }}<br>
+                <strong>Updated At:</strong> {{ $priority->updated_at ? $priority->updated_at : 'Not Updated' }}
             </p>
         </div>
     </div>

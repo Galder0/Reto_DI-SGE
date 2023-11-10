@@ -67,6 +67,7 @@ class CategoryController extends Controller
         ]);
 
         $category->name = $request->input('name');
+        $category->updated_at = now();
         $category->save();
 
         return redirect()->route('categories.index')->with('success', 'Category updated successfully');

@@ -87,7 +87,9 @@ class ComentarioController extends Controller
     {   
         
         $comentario->texto = $request->texto;
+        $comentario->updated_at = now();
         $comentario->save();
+        
         return redirect()->route('incidences.show', ['incidence' => $comentario->incidence_id]);
     }
 

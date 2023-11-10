@@ -16,21 +16,27 @@ class StatusSeeder extends Seeder
     {
         DB::table('statuses')->insert([
             'name' => 'Sin Asignar',
+            "created_at"=>now()
         ]);
         DB::table('statuses')->insert([
             'name' => 'Asignada',
+            "created_at"=>now()
         ]);
         DB::table('statuses')->insert([
             'name' => 'Escalada',
+            "created_at"=>now()
         ]);
         DB::table('statuses')->insert([
             'name' => 'En Curso',
+            "created_at"=>now()
         ]);
         DB::table('statuses')->insert([
             'name' => 'Retenida',
+            "created_at"=>now()
         ]);
         DB::table('statuses')->insert([
             'name' => 'Resuelta',
+            "created_at"=>now()
         ]);
         DB::table('statuses')->insert([
             'name' => 'Cerrada',

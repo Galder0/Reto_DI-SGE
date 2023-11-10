@@ -53,6 +53,7 @@ class PriorityController extends Controller
         
         $priority->name = $request->name;
         $priority->order = $request->order;
+        $priority->updated_at = now();
         $priority->save();
         return redirect()->route('priorities.index')->with('success', 'Priority updated successfully');
     }

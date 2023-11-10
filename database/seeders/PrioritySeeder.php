@@ -17,21 +17,25 @@ class PrioritySeeder extends Seeder
         DB::table('priorities')->insert([
             'name' => 'Alta',
             'order' => 15,
+            "created_at"=>now()
         ]);
 
         DB::table('priorities')->insert([
             'name' => 'Media',
             'order' => 10,
+            "created_at"=>now()
         ]);
 
         DB::table('priorities')->insert([
             'name' => 'Baja',
             'order' => 5,
+            "created_at"=>now()
         ]);
 
         DB::table('priorities')->insert([
             'name' => 'Crítica',
             'order' => 20,
+            "created_at"=>now()
         ]);
     }
 }

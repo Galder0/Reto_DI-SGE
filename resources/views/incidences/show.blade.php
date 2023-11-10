@@ -14,6 +14,7 @@
                 <strong>Created By:</strong> {{ $incidence->user_name }}<br>
                 <strong>Categoria:</strong> {{ $incidence->category_name }}<br>
                 <strong>Created At:</strong> {{ $incidence->created_at }}<br>
+                <strong>Updated At:</strong> {{ $incidence->updated_at ? $incidence->updated_at : 'Not Updated' }}<br>
                 <strong>Departamento:</strong> {{ $incidence->department_name }}<br>
                 <strong>Status:</strong> {{ $incidence->status ? $incidence->status->name : 'Not Available' }}<br>
                 <strong>Prioridad:</strong> {{ $incidence->priority ? $incidence->priority->name : 'Not Available' }}<br>
@@ -36,7 +37,8 @@
                 <p class="card-text">{{ $comentario->texto }}</p>
                 <p class="card-text">
                     <strong>Escrito por:</strong> {{ $comentario->user_name }}<br>
-                    <strong>Escrito el:</strong> {{ $comentario->created_at }}
+                    <strong>Escrito el:</strong> {{ $comentario->created_at }}<br>
+                    <strong>Updated At:</strong> {{ $comentario->updated_at ? $comentario->updated_at : 'Not Updated' }}</li>
                 </p>
                 @if ($comentario->edited_at)
                     <p class="card-text edited-label">Edited</p>

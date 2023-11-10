@@ -34,7 +34,9 @@
             <h6>Comments:</h6>
             <ul class="list-group">
                 @foreach ($incidence->comentarios as $comentario)
-                <li class="list-group-item">Comentario: {{ $comentario->texto }}</li>
+                <li class="list-group-item">Comentario: {{ $comentario->texto }}<br>
+                <strong>Created At:</strong> {{ $comentario->created_at}}<br>
+                <strong>Updated At:</strong> {{ $comentario->updated_at ? $comentario->updated_at : 'Not Updated' }}</li>
                 @endforeach
             </ul>
         </div>
