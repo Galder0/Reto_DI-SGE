@@ -99,7 +99,7 @@ class ComentarioController extends Controller
     public function destroy(Comentario $comentario)
     {
         $comentario->delete();
-        return redirect()->route('comentarios.index');
+        return redirect()->route('incidences.show', ['incidence' => $comentario->incidence_id]);
     }
 
     public function getUserById($userId)

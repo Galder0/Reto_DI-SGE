@@ -43,8 +43,9 @@
         @endauth
     </div>
     @endforeach
-
+    @auth
     <!-- Button to create a new incidence -->
     <a href="{{ route('incidences.create') }}" class="btn btn-primary mt-3">Create Incidence</a>
+    @endauth
 </div>
 @endsection

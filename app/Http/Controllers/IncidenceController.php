@@ -77,10 +77,10 @@ class IncidenceController extends Controller
     {
         
         $user = User::find($incidence->user_id);
-        $incidence->user_name = $user ? $user->name : 'Unknown User';
+        $incidence->user_name = $user ? $user->name : 'User not avaliable';
 
         $currentUser = Auth::user();
-        $incidence->user_department = $currentUser ? $currentUser->department_id : 'Unknown Department';
+        $incidence->user_department = $currentUser ? $currentUser->department_id : 'Department not avaliable';
     
         $categoryName = $this->getCategoryName($incidence->category_id);
         $incidence->category_name = $categoryName;
@@ -177,7 +177,7 @@ class IncidenceController extends Controller
         if ($category) {
             return $category->name;
         } else {
-            return 'Unknown Category';
+            return 'Category not avaliable';
         }
     }
     public function getDepartmentName($departmentId)

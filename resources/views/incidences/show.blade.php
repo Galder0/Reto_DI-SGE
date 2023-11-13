@@ -12,12 +12,12 @@
             <!-- Incidence Information -->
             <p class="card-text">
                 <strong>Created By:</strong> {{ $incidence->user_name }}<br>
-                <strong>Categoria:</strong> {{ $incidence->category_name }}<br>
+                <strong>Category:</strong> {{ $incidence->category_name }}<br>
                 <strong>Created At:</strong> {{ $incidence->created_at }}<br>
                 <strong>Updated At:</strong> {{ $incidence->updated_at ? $incidence->updated_at : 'Not Updated' }}<br>
-                <strong>Departamento:</strong> {{ $incidence->department_name }}<br>
-                <strong>Status:</strong> {{ $incidence->status ? $incidence->status->name : 'Not Available' }}<br>
-                <strong>Prioridad:</strong> {{ $incidence->priority ? $incidence->priority->name : 'Not Available' }}<br>
+                <strong>Department:</strong> {{ $incidence->department_name }}<br>
+                <strong>Status:</strong> {{ $incidence->status ? $incidence->status->name : 'Status not available' }}<br>
+                <strong>Priority:</strong> {{ $incidence->priority ? $incidence->priority->name : 'Priority not available' }}<br>
             </p>
 
             <!-- Incidence Text -->

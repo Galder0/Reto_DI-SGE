@@ -54,7 +54,6 @@
         </div>
     </div>
     @endforeach
-
     <a href="{{ route('categories.create') }}" class="btn btn-primary">Create Category</a>
 </div>
 @endsection
