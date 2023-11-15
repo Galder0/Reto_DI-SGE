@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::table('incidences', function (Blueprint $table) {
             $table->unsignedBigInteger('priority_id')->nullable();
-            $table->foreign('priority_id')->references('id')->on('priorities');
+            $table->foreign('priority_id')->references('id')->on('priorities')->onDelete('set Null');
+
         });
     }
 

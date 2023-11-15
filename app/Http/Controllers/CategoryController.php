@@ -82,9 +82,9 @@ class CategoryController extends Controller
         $incidences = $category->incidences;
 
         // Set category_id to null for each associated incidence
-        $incidences->each(function ($incidence) {
-            $incidence->update(['category_id' => null]);
-        });
+        // $incidences->each(function ($incidence) {
+        //     $incidence->update(['category_id' => null]);
+        // });
 
         // Delete the category
         $category->delete();

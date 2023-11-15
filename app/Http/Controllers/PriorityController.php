@@ -64,7 +64,7 @@ class PriorityController extends Controller
     public function destroy(Priority $priority)
     {
         // Find all incidences with the given priority and set their priority_id to null
-        \App\Models\Incidence::where('priority_id', $priority->id)->update(['priority_id' => null]);
+        // \App\Models\Incidence::where('priority_id', $priority->id)->update(['priority_id' => null]);
 
         // Now, delete the priority
         $priority->delete();

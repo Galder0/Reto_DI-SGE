@@ -14,16 +14,17 @@
             
                     <div class="d-flex justify-content-end align-items-center">
                         <a class="btn btn-warning btn-sm me-2" href="{{ route('departments.edit', $department) }}" role="button">Edit</a>           
-                        @if ($department->incidences->count() === 0)
-                        <form action="{{ route('departments.destroy', $department) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
+                        @if ($department->incidences->count() === 0 && $department->users->count() === 0)
+                            <form action="{{ route('departments.destroy', $department) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                            </form>
                         @else
-                        <button class="btn btn-danger btn-sm" type="submit" disabled data-bs-toggle="tooltip" data-bs-placement="top"
-                            data-bs-custom-class="custom-tooltip"
-                            data-bs-title="This top tooltip is themed via CSS variables.">Delete</button>
+                            <button class="btn btn-danger btn-sm" type="submit" disabled data-bs-toggle="tooltip" data-bs-placement="top"
+                                data-bs-custom-class="custom-tooltip"
+                                data-bs-title="This top tooltip is themed via CSS variables."
+                                title="Department cannot be deleted as it has associated incidences or users.">Delete</button>
                         @endif
                     </div>
 
