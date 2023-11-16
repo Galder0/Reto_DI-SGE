@@ -76,6 +76,11 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    
+                                    <!-- Modificar esto para dejar que los usuarios cambien de departamento -->
+                                    <a class="dropdown-item" href="{{ route('edit') }}">
+                                        {{ __('Switch Department') }}
+                                    </a>
                                 </div>
                             </li>
                         @endguest

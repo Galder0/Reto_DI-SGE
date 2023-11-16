@@ -51,11 +51,12 @@ class ComentarioController extends Controller
     {
         $user_id = Auth::id();
     
-        $incidence = Incidence::find($request->incidence_id); // Assuming incidence_id is the field you want to use
+        $incidence = Incidence::find($request->incidence_id);
         $comentario = new Comentario();
         $comentario->texto = $request->texto;
         $comentario->incidence_id = $incidence->id;
         $comentario->user_id = $user_id;
+        $comentario->updated_at = null;
         $comentario->save();
     
         return redirect()->route('incidences.show', $incidence);

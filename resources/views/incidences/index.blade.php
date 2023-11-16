@@ -33,7 +33,7 @@
         <div class="card-footer">
             <h6>Comments:</h6>
             <ul class="list-group">
-                @foreach ($incidence->comentarios as $comentario)
+                @foreach ($incidence->comentarios->sortByDesc('created_at')->take(5) as $comentario)
                 <li class="list-group-item"><strong>Comment:</strong> {{ $comentario->texto }}<br>
                 <strong>Created At:</strong> {{ $comentario->created_at}}<br>
                 <strong>Updated At:</strong> {{ $comentario->updated_at ? $comentario->updated_at : 'Not Updated' }}</li>

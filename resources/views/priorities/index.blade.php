@@ -31,7 +31,7 @@
             <h6 class="card-subtitle mb-2 text-muted">Creado el: {{ $priority->created_at }}</h6>
             <p class="card-text">First 5 Incidences:</p>
             <ul>
-                @foreach ($priority->incidences->take(5) as $incidence)
+                @foreach ($priority->incidences->sortByDesc('created_at')->take(5) as $incidence)
                 <div class="card mb-3">
                     <div class="card-header"> <a href="{{ route('incidences.show', $incidence) }}"> {{ $incidence->title }}</a>.</div>
                     <div class="card-body"> 

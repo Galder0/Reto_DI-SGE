@@ -30,7 +30,7 @@
 
                 <ul class="list-group mt-2">
                     <li class="list-group-item">Incidences:</li>
-                    @foreach ($department->incidences->take(5) as $incidence)
+                    @foreach ($department->incidences->sortByDesc('created_at')->take(5) as $incidence)
                     <div class="card mb-3">
                         <div class="card-header"> <a href="{{ route('incidences.show', $incidence) }}"> {{ $incidence->title }}</a>.</div>
                         <div class="card-body"> 

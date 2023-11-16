@@ -79,5 +79,19 @@ class RegisterController extends Controller
         ]);
     }
 
+        public function edit(array $data)
+    {
+        $departments = Department::all();
+        return view('auth.edit', compact('departments'));
+    }
+
+    public function update(Request $request, array $data)
+    {
+
+        $user->update($request->all());
+
+        return redirect()->route('users.index')->with('success', 'User updated successfully');
+    }
+
     
 }
