@@ -15,7 +15,7 @@
 
         <div class="form-group mb-3">
             <label for="order" class="form-label">Order</label>
-            <input type="number" class="form-control" id="order" name="order" value="{{ $priority->order }}" placeholder="Optional">
+            <input type="number" class="form-control" id="order" name="order" value="{{ $priority->order }}" placeholder="From 1 to 100" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Update Priority</button>

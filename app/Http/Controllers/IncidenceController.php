@@ -52,23 +52,39 @@ class IncidenceController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+{
+    // Validate the incoming request data
+    $request->validate([
+        'title' => 'required',
+        'text' => 'required',
+        'estimatedtime' => 'required|numeric',
+        'department_id' => 'required|exists:departments,id', // Adjust the validation rule as needed
+        'category_id' => 'required|exists:categories,id',   // Adjust the validation rule as needed
+        'priority_id' => 'required|exists:priorities,id',   // Adjust the validation rule as needed
+        'status_id' => 'required|exists:statuses,id',       // Adjust the validation rule as needed
+    ]);
 
-        $user_id = Auth::id();
+    $user_id = Auth::id();
 
-        $incidence = new Incidence();
-        $incidence->title = $request->input('title');
-        $incidence->text = $request->input('text');
-        $incidence->estimatedtime = $request->input('estimatedtime');
-        $incidence->user_id = $user_id;
-        $incidence->department_id = $request->input('department_id');;
-        $incidence->category_id = $request->input('category_id');
-        $incidence->priority_id = $request->input('priority_id');
-        $incidence->status_id = $request->input('status_id');
-        $incidence->save();
+    // Create a new incidence instance
+    $incidence = new Incidence();
 
-        return redirect()->route('incidences.index')->with('success', 'Incidence created successfully.');
-    }
+    // Set the attributes from the request
+    $incidence->title = $request->input('title');
+    $incidence->text = $request->input('text');
+    $incidence->estimatedtime = $request->input('estimatedtime');
+    $incidence->user_id = $user_id;
+    $incidence->department_id = $request->input('department_id');
+    $incidence->category_id = $request->input('category_id');
+    $incidence->priority_id = $request->input('priority_id');
+    $incidence->status_id = $request->input('status_id');
+
+    // Save the incidence if all attributes are set
+    $incidence->save();
+
+    return redirect()->route('incidences.index')->with('success', 'Incidence created successfully.');
+}
+
 
     /**
      * Display the specified resource.
@@ -123,18 +139,31 @@ class IncidenceController extends Controller
      */
     public function update(Request $request, Incidence $incidence)
     {
+        // Validate the incoming request data
+        $request->validate([
+            'title' => 'required',
+            'text' => 'required',
+            'estimatedtime' => 'required|numeric',
+            'department_id' => 'required|exists:departments,id', // Adjust the validation rule as needed
+            'category_id' => 'required|exists:categories,id',   // Adjust the validation rule as needed
+            'priority_id' => 'required|exists:priorities,id',   // Adjust the validation rule as needed
+            'status_id' => 'required|exists:statuses,id',       // Adjust the validation rule as needed
+        ]);
+
         $user_id = Auth::id();
 
-        $incidence->title = $request->title;
-        $incidence->text = $request->text;
-        $incidence->estimatedtime = $request->estimatedtime;
+        // Set the attributes from the request
+        $incidence->title = $request->input('title');
+        $incidence->text = $request->input('text');
+        $incidence->estimatedtime = $request->input('estimatedtime');
         $incidence->user_id = $user_id;
-        $incidence->priority_id = $request->priority_id;
-        $incidence->department_id = $request->department_id;
-        $incidence->category_id = $request->category_id;
-        $incidence->status_id = $request->status_id;
+        $incidence->priority_id = $request->input('priority_id');
+        $incidence->department_id = $request->input('department_id');
+        $incidence->category_id = $request->input('category_id');
+        $incidence->status_id = $request->input('status_id');
         $incidence->updated_at = now();
-        
+
+        // Save the updated incidence
         $incidence->save();
 
         return redirect()->route('incidences.index')->with('success', 'Incidence edited successfully.');

@@ -78,20 +78,28 @@ class RegisterController extends Controller
             'department_id' => $data['department'],
         ]);
     }
-
-        public function edit(array $data)
-    {
-        $departments = Department::all();
-        return view('auth.edit', compact('departments'));
-    }
-
-    public function update(Request $request, array $data)
-    {
-
-        $user->update($request->all());
-
-        return redirect()->route('users.index')->with('success', 'User updated successfully');
-    }
-
     
+
+    // public function edit(User $user)
+    // {
+    //     $departments = Department::all();
+    //     return view('auth.edit', compact('user', 'departments'));
+    // }
+
+    // public function update(Request $request, User $user)
+    // {
+    //     $request->validate([
+    //         'name' => ['required', 'string', 'max:255'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
+    //         'department' => ['required', 'exists:departments,id'],
+    //     ]);
+
+    //     $user->update([
+    //         'name' => $request->input('name'),
+    //         'email' => $request->input('email'),
+    //         'department_id' => $request->input('department'),
+    //     ]);
+
+    //     return redirect()->route('home.index')->with('success', 'User updated successfully');
+    // }
 }
