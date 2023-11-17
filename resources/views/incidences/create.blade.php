@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Create an Incidence</h1>
+    <h1>Create new Incidence</h1>
 
     <form method="POST" action="{{ route('incidences.store') }}">
         @csrf

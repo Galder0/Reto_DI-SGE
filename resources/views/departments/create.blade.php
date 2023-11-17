@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+    <h1>Create new Department</h1>
     <form class="mt-2" name="create_platform"
         action="{{route('departments.store')}}" method="POST" enctype="multipart/form-data">
         @csrf

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Edit Priority</h1>
+    <h1>Edit Priority: {{ $priority->name }}</h1>
 
     <form action="{{ route('priorities.update', $priority) }}" method="POST">
         @csrf

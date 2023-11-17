@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <h1>Create new Status</h1>
     <form action="{{ route('statuses.store') }}" method="POST">
         @csrf
         <div class="mb-3">

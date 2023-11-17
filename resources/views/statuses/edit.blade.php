@@ -2,8 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Edit Status</h1>
-
+    <h1>Edit Status: {{ $status->name }}</h1>
     <form action="{{ route('statuses.update', $status) }}" method="POST">
         @csrf
         @method('PUT')

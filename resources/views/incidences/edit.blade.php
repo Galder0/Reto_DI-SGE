@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Edit Incidence</h1>
+    <h1>Edit Incidence: {{ $incidence->title }}</h1>
 
     <form method="POST" action="{{ route('incidences.update', $incidence) }}">
         @csrf

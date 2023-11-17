@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    <h1>Create new Priority</h1>
     <form action="{{ route('priorities.store') }}" method="POST">
         @csrf
         <div class="mb-3">
