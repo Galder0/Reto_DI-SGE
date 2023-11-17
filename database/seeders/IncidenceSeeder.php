@@ -38,7 +38,7 @@ class IncidenceSeeder extends Seeder {
             "title"=>"Fallo en la base de datos de la web, los precios aparecen con descuento",
             "text"=>"Varios clientes ya han realizado las compras y nos llegan las alertas desde el departamento de ventas.",
             "estimatedtime"=> "100",
-            "user_id" => "1",
+            "user_id" => "3",
             "category_id" => "3",
             "department_id" => "3",
             "priority_id" => "4",

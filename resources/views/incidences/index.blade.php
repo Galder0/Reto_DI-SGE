@@ -2,7 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1 class="mb-4">Incidences</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Incidences</h1>
+        @auth
+            <!-- Button to create a new incidence -->
+            <a href="{{ route('incidences.create') }}" class="btn btn-primary">Create Incidence</a>
+        @endauth
+    </div>
 
     @foreach ($incidences as $incidence)
     <div class="card mb-4">
@@ -10,6 +16,8 @@
             <h2 class="card-title"><a href="{{ route('incidences.show', $incidence) }}">{{ $incidence->title }}</a></h2>
             <p class="card-text">
                 <strong>Created by:</strong> {{ $incidence->user_name }}
+                <br>
+                <strong>On Department:</strong> {{ $incidence->department_name }}
                 <br>
                 <strong>Category:</strong> {{ $incidence->category_name }}
                 <br>
@@ -43,9 +51,5 @@
         @endauth
     </div>
     @endforeach
-    @auth
-    <!-- Button to create a new incidence -->
-    <a href="{{ route('incidences.create') }}" class="btn btn-primary mt-3">Create Incidence</a>
-    @endauth
 </div>
 @endsection

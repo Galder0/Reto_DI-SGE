@@ -2,7 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>Departments</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Departments</h1>
+            @auth
+                <!-- Button to create a new incidence -->
+                <a href="{{ route('departments.create') }}" class="btn btn-primary">Create Department</a>
+            @endauth
+    </div>
     <ul class="list-group">
         @foreach ($departments as $department)
         <div class="card mb-4">
@@ -60,6 +66,5 @@
         </div>
         @endforeach
     </ul>
-    <a href="{{ route('departments.create') }}" class="btn btn-primary mt-3">Crear Departamento</a>
 </div>
 @endsection

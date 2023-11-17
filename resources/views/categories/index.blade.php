@@ -2,7 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>Categories</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Categories</h1>
+        @auth
+            <!-- Button to create a new incidence -->
+            <a href="{{ route('categories.create') }}" class="btn btn-primary">Create Category</a>
+        @endauth
+    </div>
 
     @foreach ($categories as $category)
     <div class="card mb-3">
@@ -54,6 +60,5 @@
         </div>
     </div>
     @endforeach
-    <a href="{{ route('categories.create') }}" class="btn btn-primary">Create Category</a>
 </div>
 @endsection

@@ -2,7 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>Statuses</h1>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Statuses</h1>
+            @auth
+                <!-- Button to create a new incidence -->
+                <a href="{{ route('statuses.create') }}" class="btn btn-primary">Create Status</a>
+            @endauth
+    </div>
 
     @foreach ($statuses as $status)
     <div class="card mb-3">
@@ -53,7 +59,5 @@
         </div>
     </div>
     @endforeach
-
-    <a href="{{ route('statuses.create') }}" class="btn btn-primary">Create Status</a>
 </div>
 @endsection

@@ -26,6 +26,8 @@ class IncidenceController extends Controller
             $incidence->user_name = $user ? $user->name : 'Unknown User';
             $categoryName = $this->getCategoryName($incidence->category_id);
             $incidence->category_name = $categoryName;
+            $departmentName = $this->getDepartmentName($incidence->department_id);
+            $incidence->department_name = $departmentName;
         });
         
         return view('incidences.index',['incidences' => $incidences]);

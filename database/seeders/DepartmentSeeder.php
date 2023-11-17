@@ -24,5 +24,9 @@ class DepartmentSeeder extends Seeder {
             "depname"=>"Departamento IT",
             "created_at"=>now(),
         ]);
+        DB::table('departments')->insert([
+            "depname"=>"Departmento RRHH",
+            "created_at"=>now(),
+        ]);
     }
 }

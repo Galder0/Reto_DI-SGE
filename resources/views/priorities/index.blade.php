@@ -2,8 +2,13 @@
 
 @section('content')
 <div class="container">
-    <h1>Priorities</h1>
-
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="mb-0">Priorities</h1>
+            @auth
+                <!-- Button to create a new incidence -->
+                <a href="{{ route('priorities.create') }}" class="btn btn-primary">Create Priority</a>
+            @endauth
+    </div>
     @php
         // Order priorities by 'order' attribute in descending order
         $priorities = $priorities->sortByDesc('order');
@@ -60,6 +65,5 @@
         </div>
     </div>
     @endforeach
-    <a href="{{ route('priorities.create') }}" class="btn btn-primary">Create Priority</a>
 </div>
 @endsection
