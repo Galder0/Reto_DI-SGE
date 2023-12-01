@@ -9,6 +9,10 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+use OpenApi\Annotations as OA;
+
+
+
 class User extends Authenticatable {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -52,7 +56,8 @@ class User extends Authenticatable {
         return $this->hasMany(Comentario::class);
     }
 
-    public function department():BelongsTo {
+    public function department(): BelongsTo
+    {
         return $this->belongsTo(Department::class);
     }
 }

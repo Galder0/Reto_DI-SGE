@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class priority extends Model
+class Priority extends Model
 {
     use HasFactory;
+
+    protected $table = 'priorities';
 
     public function incidences(): HasMany
     {

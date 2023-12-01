@@ -15,4 +15,8 @@ class Department extends Model
     public function incidences(): HasMany {
         return $this->hasMany(Incidence::class);
     }
+    protected $fillable = [
+        'depname',
+        // other fields...
+    ];
 }
