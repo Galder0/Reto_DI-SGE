@@ -55,7 +55,7 @@ class User extends Authenticatable {
     public function comentarios(): HasMany {
         return $this->hasMany(Comentario::class);
     }
-
+    
     public function department(): BelongsTo
     {
         return $this->belongsTo(Department::class);

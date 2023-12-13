@@ -96,7 +96,7 @@ class AuthController extends Controller
  *     @OA\Response(
  *         response="401",
  *         description="Invalid credentials"
- *     )
+ *     ),
  *     @OA\Response(
  *         response="404",
  *         description="Not Found"

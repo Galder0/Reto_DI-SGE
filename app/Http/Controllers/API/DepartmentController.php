@@ -8,15 +8,30 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 
-
 /**
- * @OA\Info(title="Authentication API", version="1.0"),
+ * @OA\Info(
+ *     title="Authentication API",
+ *     version="1.0",
+ *     @OA\Contact(
+ *         email="contact@yourapi.com",
+ *         name="Your API Team"
+ *     ),
+ *     @OA\License(
+ *         name="Apache 2.0",
+ *         url="http://www.apache.org/licenses/LICENSE-2.0.html"
+ *     )
+ * ),
  * @OA\Tag(
  *     name="Departments",
  *     description="API Endpoints for Departments"
+ * ),
+ * @OA\SecurityScheme(
+ *     securityScheme="bearerAuth",
+ *     type="http",
+ *     scheme="bearer",
+ *     bearerFormat="JWT",
  * )
  */
-
 
 class DepartmentController extends Controller
 {
@@ -28,51 +43,64 @@ class DepartmentController extends Controller
      *     @OA\Response(
      *         response="200",
      *         description="Successful operation",
-     *     ),
-     *     security={
-     *         {"bearerAuth": {}}
-     *     }
+     *     )
      * )
      */
     public function index()
     {
-        $departments = Department::orderBy('created_at')->get();
-        return response()->json(['departments' => $departments])
+        $departments = Department::with('users')->orderBy('created_at')->get();
+    
+        $formattedDepartments = $departments->map(function ($department) {
+            return [
+                'id' => $department->id,
+                'depname' => $department->depname,
+                'users' => $department->users->map(function ($user) {
+                    return [
+                        'name' => $user->name,
+                        'email' => $user->email,
+                    ];
+                }),
+            ];
+        });
+    
+        return response()->json(['departments' => $formattedDepartments])
             ->setStatusCode(Response::HTTP_OK);
     }
 
-
     /**
-     * @OA\Post(
-     *     path="/api/departments",
-     *     summary="Create a new department",
-     *     tags={"Departments"},
-     *     @OA\RequestBody(
-     *         required=true,
-     *         @OA\MediaType(
-     *             mediaType="application/json",
-     *             @OA\Schema(
-     *                 type="object",
-     *                 required={"depname"},
-     *                 @OA\Property(
-     *                     property="depname",
-     *                     type="string",
-     *                     description="Name of the department",
-     *                     maxLength=255,
-     *                 )
-     *             )
-     *         )
-     *     ),
-     *     @OA\Response(
-     *         response="201",
-     *         description="Department created successfully",
-     *     ),
-     *     @OA\Response(
-     *         response="422",
-     *         description="Validation error",
-     *     )
-     * )
-     */
+ * @OA\Post(
+ *     path="/api/departments",
+ *     summary="Create a new department",
+ *     tags={"Departments"},
+ *     @OA\RequestBody(
+ *         required=true,
+ *         @OA\MediaType(
+ *             mediaType="application/json",
+ *             @OA\Schema(
+ *                 type="object",
+ *                 required={"depname"},
+ *                 @OA\Property(
+ *                     property="depname",
+ *                     type="string",
+ *                     description="Name of the department",
+ *                     maxLength=255,
+ *                 )
+ *             )
+ *         )
+ *     ),
+ *     @OA\Response(
+ *         response="201",
+ *         description="Department created successfully",
+ *     ),
+ *     @OA\Response(
+ *         response="422",
+ *         description="Validation error",
+ *     ),
+ *     security={
+ *         {"bearerAuth": {}}
+ *     }
+ * )
+ */
     
     public function store(Request $request)
     {
@@ -115,7 +143,10 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        return response()->json(['department' => $department])
+        // Eager load the users relationship
+        $departmentWithUsers = $department->load('users');
+
+        return response()->json(['department' => $departmentWithUsers])
             ->setStatusCode(Response::HTTP_OK);
     }
 
@@ -158,7 +189,10 @@ class DepartmentController extends Controller
      *     @OA\Response(
      *         response="404",
      *         description="Department not found",
-     *     )
+     *     ),
+     *      security={
+     *         {"bearerAuth": {}}
+     *     }
      * )
      */
 
@@ -197,6 +231,10 @@ class DepartmentController extends Controller
      *         description="Department deleted successfully",
      *     ),
      *     @OA\Response(
+     *         response="401",
+     *         description="Unauthorized",
+     *      ),
+     *     @OA\Response(
      *         response="404",
      *         description="Department not found",
      *     ),
@@ -205,8 +243,13 @@ class DepartmentController extends Controller
      *     }
      * )
      */
-    public function destroy(Department $department)
+        public function destroy(Department $department)
     {
+        // Check for authentication (assuming Laravel Sanctum for API authentication)
+        if (!auth()->check()) {
+            return response()->json(['error' => 'Unauthorized'], Response::HTTP_UNAUTHORIZED);
+        }
+
         $department->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
